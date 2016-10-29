@@ -22,15 +22,30 @@ class GameViewController: UIViewController {
     @IBOutlet var button_2: UIButton!
     @IBOutlet var button_3: UIButton!
     
-    private let model = TranslationModel()
+    private var model: GameModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         wordLabel.text = "Loading…"
-        model.fetchTranslations {
+        
+        let translations = TranslationModel()
+        translations.fetchTranslations {
             self.wordLabel.text = nil
+            self.model = GameModel(words: translations.wordList)
+            self.model?.startGame()
+            
+            self.onNextRound()
         }
+    }
+    
+    private func onNextRound() {
+        guard let round = model?.round else {
+            return
+        }
+        wordLabel.text = round.question
+        solutionLabel.text = round.solutions.first
+        // TODO: start timer, etc.
     }
 
     @IBAction func onButton(sender: UIButton) {

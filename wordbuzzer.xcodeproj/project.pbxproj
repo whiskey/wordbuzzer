@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3570CDD41DC4F28200C50F8E /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E16F551DC4F00200DB6B31 /* Word.swift */; };
+		3570CDD61DC5233200C50F8E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570CDD51DC5233200C50F8E /* GameModel.swift */; };
+		3570CDDA1DC523A300C50F8E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570CDD91DC523A300C50F8E /* Player.swift */; };
+		3570CDDC1DC530F800C50F8E /* ShuffledSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */; };
 		35A434921DC26C3700E24CD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A434911DC26C3700E24CD8 /* AppDelegate.swift */; };
 		35A434971DC26C3700E24CD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A434951DC26C3700E24CD8 /* Main.storyboard */; };
 		35A434991DC26C3700E24CD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35A434981DC26C3700E24CD8 /* Assets.xcassets */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3570CDD51DC5233200C50F8E /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		3570CDD91DC523A300C50F8E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuffledSequences.swift; sourceTree = "<group>"; };
 		35A4348E1DC26C3700E24CD8 /* wordbuzzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordbuzzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A434911DC26C3700E24CD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35A434961DC26C3700E24CD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,6 +89,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3570CDD71DC5236C00C50F8E /* Data handling */ = {
+			isa = PBXGroup;
+			children = (
+				35E16F4D1DC4D4E000DB6B31 /* TranslationModel.swift */,
+				35E16F4F1DC4D55700DB6B31 /* FileImporter.swift */,
+				35E16F551DC4F00200DB6B31 /* Word.swift */,
+			);
+			name = "Data handling";
+			sourceTree = "<group>";
+		};
+		3570CDD81DC5239300C50F8E /* Game logic */ = {
+			isa = PBXGroup;
+			children = (
+				3570CDD51DC5233200C50F8E /* GameModel.swift */,
+				3570CDD91DC523A300C50F8E /* Player.swift */,
+			);
+			name = "Game logic";
+			sourceTree = "<group>";
+		};
 		35A434851DC26C3700E24CD8 = {
 			isa = PBXGroup;
 			children = (
@@ -110,9 +135,9 @@
 				35A434911DC26C3700E24CD8 /* AppDelegate.swift */,
 				35BA0D8A1DC3BEA000BD9F66 /* GameViewController.swift */,
 				35A434951DC26C3700E24CD8 /* Main.storyboard */,
-				35E16F4D1DC4D4E000DB6B31 /* TranslationModel.swift */,
-				35E16F4F1DC4D55700DB6B31 /* FileImporter.swift */,
-				35E16F551DC4F00200DB6B31 /* Word.swift */,
+				3570CDD71DC5236C00C50F8E /* Data handling */,
+				3570CDD81DC5239300C50F8E /* Game logic */,
+				3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */,
 			);
 			path = wordbuzzer;
 			sourceTree = "<group>";
@@ -287,7 +312,10 @@
 				35A434921DC26C3700E24CD8 /* AppDelegate.swift in Sources */,
 				35E16F561DC4F00200DB6B31 /* Word.swift in Sources */,
 				35E16F4E1DC4D4E000DB6B31 /* TranslationModel.swift in Sources */,
+				3570CDDA1DC523A300C50F8E /* Player.swift in Sources */,
 				35E16F501DC4D55700DB6B31 /* FileImporter.swift in Sources */,
+				3570CDD61DC5233200C50F8E /* GameModel.swift in Sources */,
+				3570CDDC1DC530F800C50F8E /* ShuffledSequences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
