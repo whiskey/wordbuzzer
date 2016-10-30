@@ -15,6 +15,7 @@ Playground App for UIDynamics in Swift 3.x.
     * forced unwraps == developer errors on crash
     * `precondition` for stuff that might even crash in production apps to prevent an invalid state
     * `assert` for checks during development time
+* app requires full screen, I guess you don't want to browse the web in parallel, right?
 
 ## For UX
 * solution bubble don’t rotate; players on top edge might have a handicap to read labels
