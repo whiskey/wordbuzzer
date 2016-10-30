@@ -125,7 +125,6 @@ class GameViewController: UIViewController {
             })
         })
     }
-    
 
     @IBAction func onButton(sender: UIButton) {
         guard

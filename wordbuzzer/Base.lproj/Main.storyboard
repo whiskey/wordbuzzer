@@ -29,7 +29,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeX-u7-EdF">
                                 <rect key="frame" x="16" y="20" width="80" height="44"/>
-                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.72982662669999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.48103060787671231" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Mpw-bd-ucq"/>
                                     <constraint firstAttribute="height" constant="44" id="skx-lg-fbO"/>
@@ -43,7 +43,7 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJE-FU-pG9">
                                 <rect key="frame" x="279" y="20" width="80" height="44"/>
-                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.72982662669999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.48103060787671231" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="2bt-8n-NHM"/>
                                     <constraint firstAttribute="height" constant="44" id="9WW-Ed-ggC"/>
@@ -57,7 +57,7 @@
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-q3-czl">
                                 <rect key="frame" x="16" y="603" width="80" height="44"/>
-                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.72982662669999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.48103060787671231" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4UJ-Ds-1QU"/>
                                     <constraint firstAttribute="width" constant="80" id="uSl-NM-Cyr"/>
@@ -71,7 +71,7 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZF-vJ-qBf">
                                 <rect key="frame" x="279" y="603" width="80" height="44"/>
-                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.72982662669999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.3906051713" green="0.02618750412" blue="0.037274258490000003" alpha="0.48103060787671231" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="O1a-RB-jzP"/>
                                     <constraint firstAttribute="width" constant="80" id="Rod-1r-Bpe"/>
@@ -140,10 +140,10 @@
                         <outletCollection property="buttons" destination="dJE-FU-pG9" collectionClass="NSMutableArray" id="ztf-BD-iqJ"/>
                         <outletCollection property="buttons" destination="OZF-vJ-qBf" collectionClass="NSMutableArray" id="4Up-ma-X7U"/>
                         <outletCollection property="buttons" destination="Peo-q3-czl" collectionClass="NSMutableArray" id="Jt8-GS-9I1"/>
-                        <outletCollection property="scoreLabels" destination="qcI-DC-cV3" id="LWr-hn-c77"/>
-                        <outletCollection property="scoreLabels" destination="1gH-jM-Kx8" id="QtA-NP-QmL"/>
-                        <outletCollection property="scoreLabels" destination="vN4-cL-Smw" id="Nhl-Sf-eS2"/>
-                        <outletCollection property="scoreLabels" destination="CaL-qd-Rfo" id="mls-A5-pWh"/>
+                        <outletCollection property="scoreLabels" destination="qcI-DC-cV3" collectionClass="NSMutableArray" id="LWr-hn-c77"/>
+                        <outletCollection property="scoreLabels" destination="1gH-jM-Kx8" collectionClass="NSMutableArray" id="QtA-NP-QmL"/>
+                        <outletCollection property="scoreLabels" destination="vN4-cL-Smw" collectionClass="NSMutableArray" id="Nhl-Sf-eS2"/>
+                        <outletCollection property="scoreLabels" destination="CaL-qd-Rfo" collectionClass="NSMutableArray" id="mls-A5-pWh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
