@@ -125,7 +125,8 @@ class GameViewController: UIViewController {
     }
     
     private func gameLoop(inRound round: Round) {
-        let solutionText = round.solutions.randomItem()!
+        // fetch the next (or first) solution
+        let solutionText = round.nextSolution()
         let b = self.spawnBubble(withText: solutionText)
         
         // task was to have a delay of 1-3s; I expanded this a little bit to fit into my ui concept

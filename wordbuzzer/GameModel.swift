@@ -16,6 +16,20 @@ struct Round {
     let question: String
     let solutions: [String]
     let correctAnswer: String
+    
+    /// quick and dirty HACK to keep track of the currently active solution while iterating ofer all solutions
+    private static var currentSolution: String? = nil
+    func nextSolution() -> String {
+        let index = (solutions.index(of: Round.currentSolution ?? "") ?? 0) + 1
+        let current: String
+        if index == solutions.count {
+            current = solutions.first!
+        } else {
+            current = solutions[index]
+        }
+        Round.currentSolution = current
+        return current
+    }
 }
 
 
@@ -42,8 +56,10 @@ class GameModel {
     
     func nextRound() -> Round {
         // a random word
-        let random = Int(arc4random_uniform(UInt32(wordList.count)))
-        let w = wordList[random]
+        guard let w = wordList.randomItem() else {
+            preconditionFailure("no words in word list")
+        }
+        
         // check for edge cases
         assert(w.translations[sourceLanguage] != nil, "word does not exist in source language; question will be nil!")
         assert(w.translations[targetLanguage] != nil, "word does not exist in target language; answer will be nil!")
@@ -51,8 +67,7 @@ class GameModel {
         // ...plus nine wrong 'solutions'
         var tmp = Set<String>()
         while tmp.count < NUM_WORD_ALTERNATIVES {
-            let random = Int(arc4random_uniform(UInt32(wordList.count)))
-            let fake = wordList[random]
+            let fake = wordList.randomItem()!
             if let wrong = fake.translations[targetLanguage], fake.id != w.id {
                 tmp.insert(wrong)
             }
