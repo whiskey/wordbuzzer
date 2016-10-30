@@ -27,14 +27,15 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // cheap replacement for any kind of loading indicator
         wordLabel.text = "Loading…"
         
         let translations = TranslationModel()
         translations.fetchTranslations {
             self.wordLabel.text = nil
+            
             self.model = GameModel(words: translations.wordList)
             self.model?.startGame()
-            
             self.onNextRound()
         }
     }

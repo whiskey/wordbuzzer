@@ -23,7 +23,9 @@ class GameModel {
     var players: [Player] = Array(repeating: Player(), count: 4)
     private(set) var round: Round?
     
+    /// (fixed) ISO 639-2 language code for the origin language 'english'
     private let sourceLanguage = "eng"
+    /// (fixed) ISO 639-2 language code for the destination language 'spanish'
     private let targetLanguage = "spa"
     
     
@@ -31,7 +33,7 @@ class GameModel {
         self.wordList = words
     }
     
-    func startGame(/* TODO: language selection, i.e. en -> sp */) {
+    func startGame(/* TODO: flexible language selection, i.e. en -> sp */) {
         // reset
         round = nil
         nextRound()

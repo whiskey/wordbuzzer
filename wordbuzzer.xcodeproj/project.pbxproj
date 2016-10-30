@@ -95,6 +95,7 @@
 				35E16F4D1DC4D4E000DB6B31 /* TranslationModel.swift */,
 				35E16F4F1DC4D55700DB6B31 /* FileImporter.swift */,
 				35E16F551DC4F00200DB6B31 /* Word.swift */,
+				3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */,
 			);
 			name = "Data handling";
 			sourceTree = "<group>";
@@ -137,7 +138,6 @@
 				35A434951DC26C3700E24CD8 /* Main.storyboard */,
 				3570CDD71DC5236C00C50F8E /* Data handling */,
 				3570CDD81DC5239300C50F8E /* Game logic */,
-				3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */,
 			);
 			path = wordbuzzer;
 			sourceTree = "<group>";

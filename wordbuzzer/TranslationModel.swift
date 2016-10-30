@@ -31,7 +31,7 @@ class TranslationModel {
     let importer: TranslationImporter
     private(set) var wordList: WordList = []
     
-    
+    /// Init model with `TranslationImporter` of your choice. Default is `FileImporter`.
     init(importer: TranslationImporter = FileImporter()) {
         self.importer = importer
     }
