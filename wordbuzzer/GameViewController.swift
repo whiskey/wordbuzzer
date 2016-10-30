@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
             CGPoint(x: PADDING, y: PADDING),
             CGPoint(x: view.bounds.width - PADDING, y: PADDING),
             CGPoint(x: view.bounds.width - PADDING, y: view.bounds.height - PADDING),
-            CGPoint(x: PADDING, y: PADDING),
+            CGPoint(x: PADDING, y: view.bounds.height - PADDING),
         ]
     }
     
