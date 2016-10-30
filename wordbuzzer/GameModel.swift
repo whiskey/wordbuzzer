@@ -28,7 +28,8 @@ class GameModel {
     private let sourceLanguage = "eng"
     /// (fixed) ISO 639-2 language code for the destination language 'spanish'
     private let targetLanguage = "spa"
-    
+    /// number of alternative (wrong) solutions for the cuorrect answer 
+    private let NUM_WORD_ALTERNATIVES = 4
     
     init(words: WordList) {
         self.wordList = words
@@ -49,7 +50,7 @@ class GameModel {
         
         // ...plus nine wrong 'solutions'
         var tmp = Set<String>()
-        while tmp.count < 9 {
+        while tmp.count < NUM_WORD_ALTERNATIVES {
             let random = Int(arc4random_uniform(UInt32(wordList.count)))
             let fake = wordList[random]
             if let wrong = fake.translations[targetLanguage], fake.id != w.id {
