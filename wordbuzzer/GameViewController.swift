@@ -87,6 +87,14 @@ class GameViewController: UIViewController {
                 preconditionFailure()
             }
             label.text = self.numberFormatter.string(from: NSNumber(integerLiteral: player.score))
+            // label color by score
+            if player.score > 0 {
+                label.textColor = UIColor.green
+            } else if player.score < 0 {
+                label.textColor = UIColor.red
+            } else {
+                label.textColor = UIColor.white
+            }
         })
     }
     
