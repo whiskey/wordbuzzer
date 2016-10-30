@@ -19,7 +19,7 @@ Playground App for UIDynamics in Swift 3.x.
 ## For UX
 * solution bubble don’t rotate; players on top edge might have a handicap to read labels
 * only rudimentary eye candy for the game ui
-* no reset of the game state other than hard app restart
+* ~~no reset of the game state other than hard app restart~~ shake to reset game
 * no player selection
 
 ## Possible improvements
@@ -27,3 +27,4 @@ Playground App for UIDynamics in Swift 3.x.
 * Apple TV support (with `MultipeerConnectivity`)
 * Game Center (with `MultipeerConnectivity`)
 * flexible language selection _from -> to_
+* less states (models), more functional…

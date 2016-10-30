@@ -18,12 +18,7 @@ class GameViewController: UIViewController {
             buttons.forEach({ $0.isEnabled = false })
         }
     }
-    @IBOutlet var scoreLabels: [UILabel]! {
-        didSet {
-            scoreLabels.forEach({ $0.text = nil })
-        }
-    }
-    
+    @IBOutlet var scoreLabels: [UILabel]!
     private lazy var numberFormatter = NumberFormatter()
     
     private var model: GameModel? = nil
@@ -62,18 +57,31 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // preparing UI dynamics
-        animator.addBehavior(collision)
-        animator.addBehavior(itemProperties)
-        
         // cheap replacement for any kind of loading indicator
         wordLabel.text = NSLocalizedString("Loading…", comment: "a loading text")
         
         let translations = TranslationModel()
         translations.fetchTranslations {
             self.wordLabel.text = nil
-            
             self.model = GameModel(words: translations.wordList)
+            
+            self.startGame()
+        }
+    }
+    
+    fileprivate func startGame() {
+        self.buttons.forEach({ $0.isEnabled = false })
+        
+        if let b = bubble {
+            // cleanup first
+            despawnBubble(bubble: b, completion: {
+                self.startGame()
+            })
+        } else {
+            // preparing UI dynamics
+            animator.addBehavior(collision)
+            animator.addBehavior(itemProperties)
+            
             self.model?.startGame()
             self.onNextRound()
             self.updateScores()
@@ -124,6 +132,13 @@ class GameViewController: UIViewController {
         // now: 2-4s
         let timeout = DispatchTime.now() + max(2.0, drand48() * 4)
         DispatchQueue.main.asyncAfter(deadline: timeout, execute: {
+            // is the model's current round with the round here to catch a game reset
+            // this is necessary because we can't cancel the dispatch queue unlike an NSOperationQueue
+            guard self.model?.round?.turn ?? 0 == round.turn else {
+                // break game loop
+                return
+            }
+            
             self.despawnBubble(bubble: b, completion: {
                 // round still active? I'm using the button states to check this
                 if (self.buttons.first?.isEnabled)! {
@@ -188,7 +203,7 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController {
-    // MARK: UI Dynamics
+    // MARK: - UI Dynamics
     
     fileprivate func spawnBubble(withText text: String) -> WordBubble {
         // pick a random spwan point
@@ -240,5 +255,24 @@ extension GameViewController {
             bubble.removeFromSuperview()
             completion()
         })
+    }
+}
+
+extension GameViewController {
+    // MARK: - shake to reset game
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        becomeFirstResponder()
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            startGame()
+        }
     }
 }
