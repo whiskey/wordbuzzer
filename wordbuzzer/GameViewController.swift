@@ -138,7 +138,12 @@ class GameViewController: UIViewController {
         
         // handle result: correct/incorrect answer
         if model!.suggest(translation: suggestion, fromPlayer: player) {
-            // lock buttons
+            // handle race condition on multiple correct answers by checking the button enabled states
+            if buttons.first!.isEnabled == false {
+                // somebody else was faster :-/
+                return
+            }
+            // lock buttons -> round halted
             buttons.forEach({ $0.isEnabled = false })
             
             // visual feedback & cleanup
@@ -165,9 +170,9 @@ class GameViewController: UIViewController {
             // nope…
             let originalBackground = bubble.backgroundColor
             UIButton.animate(withDuration: 0.3, delay: 0, options: [.autoreverse, .beginFromCurrentState], animations: {
-                self.bubble!.backgroundColor = UIColor.red
+                bubble.backgroundColor = UIColor.red
             }, completion: { finished in
-                self.bubble!.backgroundColor = originalBackground
+                bubble.backgroundColor = originalBackground
             })
         }
         updateScores()
