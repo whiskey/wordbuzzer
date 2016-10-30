@@ -63,12 +63,6 @@
                                     <action selector="onButtonWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tPE-a3-dPg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_solution" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHh-FT-fzo">
-                                <rect key="frame" x="151.5" y="391.5" width="72" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -78,15 +72,11 @@
                             <constraint firstItem="uEf-9Y-zpW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="FNx-R3-1ZN"/>
                             <constraint firstItem="uEf-9Y-zpW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="ID0-Sk-ppm"/>
                             <constraint firstItem="CeX-u7-EdF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Lbd-JR-DB2"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EHh-FT-fzo" secondAttribute="trailing" constant="80" id="Leq-HJ-2K6"/>
-                            <constraint firstItem="EHh-FT-fzo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MXY-Mx-w3I"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="uEf-9Y-zpW" secondAttribute="trailing" constant="60" id="TUI-lT-Dgf"/>
                             <constraint firstItem="OZF-vJ-qBf" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="UnR-uc-unz"/>
                             <constraint firstItem="Peo-q3-czl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Uug-dP-S2l"/>
                             <constraint firstItem="CeX-u7-EdF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cHU-he-jPI"/>
-                            <constraint firstItem="EHh-FT-fzo" firstAttribute="top" secondItem="uEf-9Y-zpW" secondAttribute="bottom" constant="40" id="f0M-i9-QwN"/>
                             <constraint firstItem="dJE-FU-pG9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="f2G-XM-DYT"/>
-                            <constraint firstItem="EHh-FT-fzo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="mVY-wi-ymb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OZF-vJ-qBf" secondAttribute="bottom" constant="20" id="s7j-oM-kfB"/>
                             <constraint firstItem="uEf-9Y-zpW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tzn-iK-1QO"/>
                             <constraint firstItem="uEf-9Y-zpW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="zhl-eF-pfX"/>
@@ -97,7 +87,6 @@
                         <outlet property="button_1" destination="dJE-FU-pG9" id="7KG-0J-RzP"/>
                         <outlet property="button_2" destination="OZF-vJ-qBf" id="zLb-1B-Wtz"/>
                         <outlet property="button_3" destination="Peo-q3-czl" id="ijd-dc-PFS"/>
-                        <outlet property="solutionLabel" destination="EHh-FT-fzo" id="0ts-Gt-HrL"/>
                         <outlet property="wordLabel" destination="uEf-9Y-zpW" id="g0I-z8-q3H"/>
                     </connections>
                 </viewController>

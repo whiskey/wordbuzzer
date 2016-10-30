@@ -11,6 +11,9 @@
 		3570CDD61DC5233200C50F8E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570CDD51DC5233200C50F8E /* GameModel.swift */; };
 		3570CDDA1DC523A300C50F8E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570CDD91DC523A300C50F8E /* Player.swift */; };
 		3570CDDC1DC530F800C50F8E /* ShuffledSequences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */; };
+		3574890D1DC5F886003E1A91 /* WordBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3574890C1DC5F886003E1A91 /* WordBubble.swift */; };
+		3574890F1DC5F93D003E1A91 /* WordBubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3574890E1DC5F93D003E1A91 /* WordBubble.xib */; };
+		357489131DC5FF4D003E1A91 /* RandomElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357489121DC5FF4D003E1A91 /* RandomElement.swift */; };
 		35A434921DC26C3700E24CD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A434911DC26C3700E24CD8 /* AppDelegate.swift */; };
 		35A434971DC26C3700E24CD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A434951DC26C3700E24CD8 /* Main.storyboard */; };
 		35A434991DC26C3700E24CD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35A434981DC26C3700E24CD8 /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 		3570CDD51DC5233200C50F8E /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		3570CDD91DC523A300C50F8E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuffledSequences.swift; sourceTree = "<group>"; };
+		3574890C1DC5F886003E1A91 /* WordBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordBubble.swift; sourceTree = "<group>"; };
+		3574890E1DC5F93D003E1A91 /* WordBubble.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordBubble.xib; sourceTree = "<group>"; };
+		357489121DC5FF4D003E1A91 /* RandomElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomElement.swift; sourceTree = "<group>"; };
 		35A4348E1DC26C3700E24CD8 /* wordbuzzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordbuzzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A434911DC26C3700E24CD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35A434961DC26C3700E24CD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 				35E16F4F1DC4D55700DB6B31 /* FileImporter.swift */,
 				35E16F551DC4F00200DB6B31 /* Word.swift */,
 				3570CDDB1DC530F800C50F8E /* ShuffledSequences.swift */,
+				357489121DC5FF4D003E1A91 /* RandomElement.swift */,
 			);
 			name = "Data handling";
 			sourceTree = "<group>";
@@ -107,6 +114,15 @@
 				3570CDD91DC523A300C50F8E /* Player.swift */,
 			);
 			name = "Game logic";
+			sourceTree = "<group>";
+		};
+		3574890B1DC5F849003E1A91 /* Game UI */ = {
+			isa = PBXGroup;
+			children = (
+				3574890C1DC5F886003E1A91 /* WordBubble.swift */,
+				3574890E1DC5F93D003E1A91 /* WordBubble.xib */,
+			);
+			name = "Game UI";
 			sourceTree = "<group>";
 		};
 		35A434851DC26C3700E24CD8 = {
@@ -138,6 +154,7 @@
 				35A434951DC26C3700E24CD8 /* Main.storyboard */,
 				3570CDD71DC5236C00C50F8E /* Data handling */,
 				3570CDD81DC5239300C50F8E /* Game logic */,
+				3574890B1DC5F849003E1A91 /* Game UI */,
 			);
 			path = wordbuzzer;
 			sourceTree = "<group>";
@@ -280,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3574890F1DC5F93D003E1A91 /* WordBubble.xib in Resources */,
 				35A4349C1DC26C3700E24CD8 /* LaunchScreen.storyboard in Resources */,
 				35E16F4B1DC4D28900DB6B31 /* words.json in Resources */,
 				35A434991DC26C3700E24CD8 /* Assets.xcassets in Resources */,
@@ -309,9 +327,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				35BA0D8B1DC3BEA000BD9F66 /* GameViewController.swift in Sources */,
+				357489131DC5FF4D003E1A91 /* RandomElement.swift in Sources */,
 				35A434921DC26C3700E24CD8 /* AppDelegate.swift in Sources */,
 				35E16F561DC4F00200DB6B31 /* Word.swift in Sources */,
 				35E16F4E1DC4D4E000DB6B31 /* TranslationModel.swift in Sources */,
+				3574890D1DC5F886003E1A91 /* WordBubble.swift in Sources */,
 				3570CDDA1DC523A300C50F8E /* Player.swift in Sources */,
 				35E16F501DC4D55700DB6B31 /* FileImporter.swift in Sources */,
 				3570CDD61DC5233200C50F8E /* GameModel.swift in Sources */,
