@@ -18,6 +18,13 @@ class GameViewController: UIViewController {
             buttons.forEach({ $0.isEnabled = false })
         }
     }
+    @IBOutlet var scoreLabels: [UILabel]! {
+        didSet {
+            scoreLabels.forEach({ $0.text = nil })
+        }
+    }
+    
+    private lazy var numberFormatter = NumberFormatter()
     
     private var model: GameModel? = nil
     
@@ -33,7 +40,9 @@ class GameViewController: UIViewController {
     }
     
     /// the currently active solution bubble floating around
-    private var bubble: WordBubble? = nil
+    private var bubble: WordBubble? {
+        return view.subviews.filter({ return $0 is WordBubble }).first as? WordBubble
+    }
     
     fileprivate lazy var animator: UIDynamicAnimator = UIDynamicAnimator(referenceView: self.view)
     fileprivate lazy var collision: UICollisionBehavior = {
@@ -58,7 +67,7 @@ class GameViewController: UIViewController {
         animator.addBehavior(itemProperties)
         
         // cheap replacement for any kind of loading indicator
-        wordLabel.text = "Loading…"
+        wordLabel.text = NSLocalizedString("Loading…", comment: "a loading text")
         
         let translations = TranslationModel()
         translations.fetchTranslations {
@@ -67,15 +76,28 @@ class GameViewController: UIViewController {
             self.model = GameModel(words: translations.wordList)
             self.model?.startGame()
             self.onNextRound()
+            self.updateScores()
         }
+    }
+    
+    private func updateScores() {
+        model?.players.forEach({ player in
+            // attention: player ids start with 1!
+            guard let label = self.scoreLabels.filter({ $0.tag == (player.id-1) }).first else {
+                preconditionFailure()
+            }
+            label.text = self.numberFormatter.string(from: NSNumber(integerLiteral: player.score))
+        })
     }
     
     private func onNextRound() {
         guard let round = model?.nextRound() else {
             return
         }
-        print("=== Round \(round.turn) ===")
+        self.bubble?.removeFromSuperview()
+        
         wordLabel.text = round.question
+        print("=== Round \(round.turn) \"\(wordLabel.text!)\"===")
         
         // delay round start for some time
         let when = DispatchTime.now() + 2
@@ -87,22 +109,20 @@ class GameViewController: UIViewController {
     }
     
     private func gameLoop(inRound round: Round) {
-        // handle a race condition that leads to multiple visible bubbles
-        self.bubble?.removeFromSuperview()
-        
         let solutionText = round.solutions.randomItem()!
-        self.bubble = self.spawnBubble(withText: solutionText)
+        let b = self.spawnBubble(withText: solutionText)
         
         // task was to have a delay of 1-3s; I expanded this a little bit to fit into my ui concept
         // now: 2-4s
         let timeout = DispatchTime.now() + max(2.0, drand48() * 4)
         DispatchQueue.main.asyncAfter(deadline: timeout, execute: {
-            if self.bubble?.superview != nil {
-                self.despawnBubble(bubble: self.bubble!, completion: {
+            self.despawnBubble(bubble: b, completion: {
+                // round still active? I'm using the button states to check this
+                if (self.buttons.first?.isEnabled)! {
                     // next solution
                     self.gameLoop(inRound: round)
-                })
-            }
+                }
+            })
         })
     }
     
@@ -117,6 +137,7 @@ class GameViewController: UIViewController {
                 return
         }
         
+        // handle result: correct/incorrect answer
         if model!.suggest(translation: suggestion, fromPlayer: player) {
             // lock buttons
             buttons.forEach({ $0.isEnabled = false })
@@ -125,14 +146,19 @@ class GameViewController: UIViewController {
             bubble.backgroundColor = UIColor.green
             
             // present solution
-            let snap = UISnapBehavior(item: bubble, snapTo: sender.center)
+            let nearestSpawnPoint = self.spawnPoints.sorted(by: { (p1, p2) -> Bool in
+                let h1 = hypot(p1.x - sender.center.x, p1.y - sender.center.y)
+                let h2 = hypot(p2.x - sender.center.x, p2.y - sender.center.y)
+                return h1 < h2
+            }).first!
+            
+            let snap = UISnapBehavior(item: bubble, snapTo: nearestSpawnPoint)
             animator.addBehavior(snap)
             
-            // present correct solution
             let timeout = DispatchTime.now() + 2
             DispatchQueue.main.asyncAfter(deadline: timeout, execute: {
                 // cleanup
-                self.despawnBubble(bubble: self.bubble!, completion: {
+                self.despawnBubble(bubble: bubble, completion: {
                     self.onNextRound()
                 })
             })
@@ -144,9 +170,8 @@ class GameViewController: UIViewController {
             }, completion: { finished in
                 self.bubble!.backgroundColor = originalBackground
             })
-            print("WRONG ANSWER")
         }
-        print(player)
+        updateScores()
     }
 }
 
@@ -159,7 +184,8 @@ extension GameViewController {
         bubble.center = spawnPoints.randomItem()!
         bubble.alpha = 0
         
-        // insert bubble behind buttons; this could be done better but works for now
+        // insert bubble behind buttons; this could be done better 
+        // (i.e. multiple game-/ui-layers) but works for now
         view.insertSubview(bubble, at: 0)
         
         // dynamics
