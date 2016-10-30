@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uEf-9Y-zpW">
-                                <rect key="frame" x="151" y="315.5" width="72.5" height="36"/>
+                                <rect key="frame" x="151" y="316" width="73" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -83,11 +83,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button_0" destination="CeX-u7-EdF" id="tkG-Mi-93T"/>
-                        <outlet property="button_1" destination="dJE-FU-pG9" id="7KG-0J-RzP"/>
-                        <outlet property="button_2" destination="OZF-vJ-qBf" id="zLb-1B-Wtz"/>
-                        <outlet property="button_3" destination="Peo-q3-czl" id="ijd-dc-PFS"/>
                         <outlet property="wordLabel" destination="uEf-9Y-zpW" id="g0I-z8-q3H"/>
+                        <outletCollection property="buttons" destination="CeX-u7-EdF" id="ayC-yX-GPg"/>
+                        <outletCollection property="buttons" destination="dJE-FU-pG9" id="ztf-BD-iqJ"/>
+                        <outletCollection property="buttons" destination="OZF-vJ-qBf" id="4Up-ma-X7U"/>
+                        <outletCollection property="buttons" destination="Peo-q3-czl" id="Jt8-GS-9I1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

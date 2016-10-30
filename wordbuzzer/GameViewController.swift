@@ -12,10 +12,12 @@ class GameViewController: UIViewController {
 
     @IBOutlet var wordLabel: UILabel!
     
-    @IBOutlet var button_0: UIButton!
-    @IBOutlet var button_1: UIButton!
-    @IBOutlet var button_2: UIButton!
-    @IBOutlet var button_3: UIButton!
+    @IBOutlet var buttons: [UIButton]! {
+        didSet {
+            // disable all buttons on startup
+            buttons.forEach({ $0.isEnabled = false })
+        }
+    }
     
     private var model: GameModel? = nil
     
@@ -70,19 +72,48 @@ class GameViewController: UIViewController {
     }
     
     private func onNextRound() {
-        guard let round = model?.round else {
+        guard let round = model?.nextRound() else {
             return
         }
+        print("=== Round \(round.turn) ===")
         wordLabel.text = round.question
         
-        // TODO: delay solutions for some time
-        
-        let solutionText = "a very long random solution"
-        bubble = spawnBubble(withText: solutionText)
+        // delay round start for some time
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            // game ready, activate buttons
+            self.buttons.forEach({ $0.isEnabled = true })
+            
+            // present first solution
+            let solutionText = round.solutions.randomItem()!
+            self.bubble = self.spawnBubble(withText: solutionText)
+        }
     }
 
     @IBAction func onButton(sender: UIButton) {
-        print("Player \(sender.tag + 1)")
+        guard
+            let suggestion = bubble?.label.text,
+            let player = model?.players[sender.tag]
+            else {
+                assertionFailure("invalid state, check this!")
+                return
+        }
+        
+        if model!.suggest(translation: suggestion, fromPlayer: player) {
+            // yay
+            // TODO: visual feedback
+            print("CORRECT ANSWER! \\o/")
+            
+            buttons.forEach({ $0.isEnabled = false })
+            despawnBubble(bubble: self.bubble!, completion: { 
+                self.onNextRound()
+            })
+        } else {
+            // nope…
+            // TODO: visual feedback
+            print("WRONG ANSWER")
+        }
+        print(player)
     }
 }
 
@@ -116,5 +147,20 @@ extension GameViewController {
         })
         
         return bubble
+    }
+    
+    /// remove a solution bubble from the screen
+    fileprivate func despawnBubble(bubble:WordBubble, completion:@escaping () -> Void) {
+        UIView.animate(withDuration: 0.3, animations: {
+            bubble.alpha = 0
+        }, completion: { finished in
+            bubble.removeFromSuperview()
+            
+            // remove from dynamics
+            self.itemProperties.removeItem(bubble)
+            self.collision.removeItem(bubble)
+            
+            completion()
+        })
     }
 }

@@ -8,12 +8,21 @@
 
 import Foundation
 
-struct Player: Hashable {
-    let id: String = NSUUID().uuidString
+class Player: Hashable, CustomStringConvertible {
+    let id: Int
     var score: Int = 0
     
     var hashValue: Int {
         return id.hashValue
+    }
+    
+    var description:String {
+        return "Player \(id); score: \(score)"
+    }
+    
+    /// I son't care for proper ID management in this demo
+    init(_ id: Int) {
+        self.id = id
     }
 }
 
